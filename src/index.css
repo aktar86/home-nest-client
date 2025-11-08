@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Override daisyUI primary button style */
+.btn-primary {
+  @apply text-white py-2 text-center;
+  @apply bg-[#FF385C]; /* Custom primary color */
+  border: none !important;
+}
+
+/* Hover/active */
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+.btn-primary:active {
+  filter: brightness(0.96);
+}
