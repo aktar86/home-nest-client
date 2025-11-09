@@ -15,16 +15,10 @@ const Root = () => {
           <span className="loading loading-ball loading-xl"></span>
         </div>
       ) : (
-        <div className="flex flex-col  min-h-screen">
+        <div>
           <NavBar></NavBar>
-          <div className="bg-gray-50 flex-1">
-            <div className="max-w-[1440px] mx-auto">
-              <Outlet></Outlet>
-            </div>
-          </div>
-          <div className="pt-10">
-            <Footer></Footer>
-          </div>
+          <Outlet></Outlet>
+          <Footer></Footer>
           <ToastContainer />
         </div>
       )}
