@@ -1,6 +1,9 @@
 import React from "react";
+import FeaturedProperties from "./FeaturedProperties";
 
-const latestProperties = fetch('')
+const featuredPropertiesPromise = fetch(
+  "http://localhost:3000/featured-properties"
+).then((res) => res.json());
 const Home = () => {
   return (
     <div className="bg-gray-200">
@@ -8,12 +11,12 @@ const Home = () => {
         <h1>Banner or Slider Section here</h1>
 
         {/* 6 data load */}
+        <FeaturedProperties
+          featuredPropertiesPromise={featuredPropertiesPromise}
+        />
       </div>
     </div>
   );
 };
 
 export default Home;
-
-
-_

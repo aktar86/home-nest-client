@@ -8,6 +8,7 @@ import Register from "../Register/Register";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import AddProperties from "../Pages/AddProperties";
 import MyProperties from "../Pages/MyProperties";
+import PropertyDetails from "../PropertyDetails/PropertyDetails";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <MyProperties></MyProperties>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "propertydetails",
+        element: (
+          <PrivetRoute>
+            <PropertyDetails></PropertyDetails>
           </PrivetRoute>
         ),
       },

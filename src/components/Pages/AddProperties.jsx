@@ -59,7 +59,7 @@ const AddProperties = () => {
       .then((data) => {
         console.log("after saving property data", data);
         if (data.insertedId) {
-          // e.target.reset();
+          e.target.reset();
           setCategory("");
           toast.success("Property added successfully!");
         }
