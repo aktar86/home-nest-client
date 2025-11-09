@@ -5,6 +5,9 @@ import AllProperties from "../Pages/AllProperties";
 import About from "../Pages/About";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import AddProperties from "../Pages/AddProperties";
+import MyProperties from "../Pages/MyProperties";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,22 @@ const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "addproperties",
+        element: (
+          <PrivetRoute>
+            <AddProperties></AddProperties>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "myproperties",
+        element: (
+          <PrivetRoute>
+            <MyProperties></MyProperties>
+          </PrivetRoute>
+        ),
       },
     ],
   },
