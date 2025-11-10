@@ -19,6 +19,12 @@ const MyProperties = () => {
     }
   }, [user?.email]);
 
+  //delete propety and update ui
+  const deleteProperty = (id) => {
+    const updateProperty = properties.filter((p) => p._id !== id);
+    setProperties(updateProperty);
+  };
+
   return (
     <div className="bg-gray-200">
       <div className="max-w-[1440px] mx-auto bg-gray-200 border">
@@ -26,7 +32,11 @@ const MyProperties = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {properties.map((property) => (
-            <MyProperty key={property._id} property={property}></MyProperty>
+            <MyProperty
+              key={property._id}
+              property={property}
+              deleteProperty={deleteProperty}
+            ></MyProperty>
           ))}
         </div>
 
