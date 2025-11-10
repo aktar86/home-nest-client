@@ -52,7 +52,7 @@ const FeatureProperty = ({ property }) => {
         <div className="mt-5">
           <Link
             to={`/propertydetails/${propertyId}`}
-            className="btn btn-primary w-full rounded-full"
+            className="btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full"
           >
             View Details
           </Link>
