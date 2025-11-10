@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { use, useRef } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../context/AuthContext";
 
 const MyProperty = ({ property, deleteProperty }) => {
   const updateModalRef = useRef(null);
+  const { user } = use(AuthContext);
   const {
     _id: propertyId,
     property_name,
@@ -45,6 +47,12 @@ const MyProperty = ({ property, deleteProperty }) => {
         );
       }
     });
+  };
+
+  const handleUpdateProperty = (e) => {
+    e.preventDefault();
+    console.log("clik modal");
+    updateModalRef.current.close();
   };
 
   return (
@@ -112,16 +120,136 @@ const MyProperty = ({ property, deleteProperty }) => {
         className="modal modal-bottom sm:modal-middle"
       >
         <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+          <h3 className="font-bold text-center mb-5 text-2xl">
+            Update Your <span className="text-[#FF385C]">Property</span>
+          </h3>
+
+          <div className="w-full ">
+            <form
+              onClick={handleUpdateProperty}
+              className=" bg-white  shadow-sm rounded-lg p-3 space-y-5"
+            >
+              {/* 1. Property Name & Category */}
+              <div className="flex flex-col md:flex-row justify-between gap-5">
+                <div className="flex-1">
+                  <label className="block font-semibold mb-1">
+                    Property Name
+                  </label>
+                  <input
+                    type="text"
+                    name="propertyname"
+                    placeholder="e.g. Land for Sale in Sylhet"
+                    className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="block font-semibold mb-1">Category</label>
+                  <select
+                    name="category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                    required
+                  >
+                    <option value="" disabled>
+                      Select a category
+                    </option>
+                    <option value="Rent">Rent</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Land">Land</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* 2. Price & Location */}
+              <div className="flex flex-col md:flex-row justify-between gap-5">
+                <div className="flex-1">
+                  <label className="block font-semibold mb-1">Price</label>
+                  <input
+                    type="number"
+                    name="price"
+                    placeholder="124500"
+                    className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="block font-semibold mb-1">Location</label>
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Property Location"
+                    className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                  />
+                </div>
+              </div>
+
+              {/* 3. Property Image URL */}
+              <div>
+                <label className="block font-semibold mb-1">
+                  Your Property Image URL
+                </label>
+                <input
+                  type="text"
+                  name="photourl"
+                  placeholder="e.g. https://..."
+                  className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                />
+              </div>
+
+              {/* 4. User Info */}
+              <div className="flex flex-col md:flex-row justify-between gap-5">
+                <div className="flex-1">
+                  <label className="block font-semibold mb-1">User Name</label>
+                  <input
+                    type="text"
+                    name="username"
+                    readOnly
+                    defaultValue={user?.displayName}
+                    className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="block font-semibold  mb-1">
+                    User Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    readOnly
+                    defaultValue={user?.email}
+                    className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                  />
+                </div>
+              </div>
+
+              {/* 5. Description */}
+              <div>
+                <label className="block font-semibold mb-1">Description</label>
+                <textarea
+                  name="description"
+                  rows="4"
+                  placeholder="Your Property Description..."
+                  className="w-full border border-gray-300 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-[#ff385c]"
+                ></textarea>
+              </div>
+
+              {/* 6. Submit Button */}
+              <button
+                type="submit"
+                className="btn bg-[#ff385c] hover:bg-[#e23352] text-white font-semibold w-full py-2 rounded-full transition-all"
+              >
+                Update Property
+              </button>
             </form>
           </div>
+
+          {/* <div className="modal-action">
+            <form method="dialog"> */}
+          {/* if there is a button in form, it will close the modal */}
+          {/* <button className="btn">Close</button> */}
+          {/* </form>
+          </div> */}
         </div>
       </dialog>
     </div>
