@@ -25,6 +25,18 @@ const MyProperties = () => {
     setProperties(updateProperty);
   };
 
+  const handleUpdatedUI = (propertyId, updatedProperty) => {
+    const updatedPropertyUi = properties.map((property) => {
+      if (property._id === propertyId) {
+        const updateUi = { ...property, ...updatedProperty };
+        return updateUi;
+      } else {
+        return property;
+      }
+    });
+    setProperties(updatedPropertyUi);
+  };
+
   return (
     <div className="bg-gray-200">
       <div className="max-w-[1440px] mx-auto bg-gray-200 border">
@@ -36,6 +48,7 @@ const MyProperties = () => {
               key={property._id}
               property={property}
               deleteProperty={deleteProperty}
+              handleUpdatedUI={handleUpdatedUI}
             ></MyProperty>
           ))}
         </div>

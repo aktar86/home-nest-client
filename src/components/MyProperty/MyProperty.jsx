@@ -1,16 +1,20 @@
-import React, { use, useRef } from "react";
+import React, { use, useRef, useState } from "react";
 import { Link } from "react-router";
-import { toast } from "react-toastify";
+
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
-const MyProperty = ({ property, deleteProperty }) => {
+const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
   const updateModalRef = useRef(null);
+  const [category, setCategory] = useState("");
   const { user } = use(AuthContext);
+
+  //destructure for card
   const {
     _id: propertyId,
     property_name,
-    category,
+    category: property_category,
     property_location,
     property_price,
     property_img_url,
@@ -51,8 +55,59 @@ const MyProperty = ({ property, deleteProperty }) => {
 
   const handleUpdateProperty = (e) => {
     e.preventDefault();
-    console.log("clik modal");
-    updateModalRef.current.close();
+    const propertyName = e.target.propertyname.value.trim();
+    const category = e.target.category.value.trim();
+    const price = Number(e.target.price.value.trim());
+    const location = e.target.location.value.trim();
+    const photourl = e.target.photourl.value.trim();
+    const username = e.target.username.value.trim();
+    const userEmail = e.target.email.value.trim();
+    const description = e.target.description.value.trim();
+
+    if (!propertyName || !category || !price || !location || !photourl) {
+      toast.error("Please fill all required fields correctly.");
+    }
+
+    if (isNaN(price) || price < 0) {
+      toast.error("Please enter a valid price.");
+      return;
+    }
+
+    const updatedProperty = {
+      property_name: propertyName,
+      category,
+      property_price: price,
+      property_location: location,
+      property_img_url: photourl,
+      user_name: username,
+      user_email: userEmail,
+      description,
+    };
+
+    //update database
+    fetch(`http://localhost:3000/properties/${propertyId}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedProperty),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("after updating the data:", data);
+        updateModalRef.current.close();
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: "Updated!",
+            text: "Your Property has been updated successfully.",
+            icon: "success",
+          });
+
+          //update immidiate ui
+          handleUpdatedUI(propertyId, updatedProperty);
+          console.log("clik modal", updatedProperty);
+        }
+      });
   };
 
   return (
@@ -87,7 +142,7 @@ const MyProperty = ({ property, deleteProperty }) => {
                 : "bg-yellow-100 text-yellow-700"
             } `}
           >
-            {category}
+            {property_category}
           </p>
         </span>
       </div>
@@ -126,7 +181,7 @@ const MyProperty = ({ property, deleteProperty }) => {
 
           <div className="w-full ">
             <form
-              onClick={handleUpdateProperty}
+              onSubmit={handleUpdateProperty}
               className=" bg-white  shadow-sm rounded-lg p-3 space-y-5"
             >
               {/* 1. Property Name & Category */}
