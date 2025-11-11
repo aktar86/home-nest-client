@@ -34,6 +34,9 @@ const NavBar = () => {
       <li>
         <NavLink to="/myproperties">My Properties</NavLink>
       </li>
+      <li>
+        <NavLink to="/myratings">My Ratings</NavLink>
+      </li>
     </>
   );
   return (

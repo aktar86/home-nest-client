@@ -9,6 +9,7 @@ import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import AddProperties from "../Pages/AddProperties";
 import MyProperties from "../Pages/MyProperties";
 import PropertyDetails from "../PropertyDetails/PropertyDetails";
+import MyRatings from "../Pages/MyRatings";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,15 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <PropertyDetails></PropertyDetails>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "myratings",
+        loader: () => fetch("http://localhost:3000/reviews"),
+        element: (
+          <PrivetRoute>
+            <MyRatings></MyRatings>
           </PrivetRoute>
         ),
       },

@@ -5,16 +5,79 @@ import {
   faPhoneVolume,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import Ratings from "./Ratings";
+import { toast } from "react-toastify";
 import Map from "../../assets/googl_ED-1024x683.jpg";
 import UserIcon from "../../assets/user (1).png";
+import DiningImage from "../../assets/dining-room-3108037_1280.jpg";
 
 const PropertyDetails = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
   const property = useLoaderData();
+  const [userRating, setUserRating] = useState(0);
+
+  const handleRatingChange = (currentRating) => {
+    setUserRating(currentRating);
+  };
+
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+    const reviewerName = e.target.reviewer_name.value.trim();
+    const reviewerProperyName = e.target.reviewer_propery_name.value.trim();
+    const reviewDescription = e.target.review_description.value.trim();
+    const userRatings = userRating;
+    const thumbnail = property.property_img_url;
+
+    if (!userRatings || userRatings === 0) {
+      toast.error("Please set reviews!");
+      return;
+    }
+
+    if (!reviewDescription) {
+      toast.error("Write a Short description!");
+      return;
+    }
+
+    console.log(
+      reviewerName,
+      reviewerProperyName,
+      reviewDescription,
+      userRatings
+    );
+
+    const newReview = {
+      reviewerName,
+      reviewerProperyName,
+      reviewDescription,
+      userRatings,
+      thumbnail,
+      createdAt: new Date(),
+    };
+
+    console.log(newReview);
+
+    fetch("http://localhost:3000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newReview),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("after saving review: ", data);
+        if (data.insertedId) {
+          toast.success("Your Review Successfully Done!");
+          e.target.reset();
+          setUserRating(0);
+        }
+      });
+  };
+
   const {
     property_img_url,
     property_price,
@@ -26,7 +89,7 @@ const PropertyDetails = () => {
     property_owner_mail,
     createdAt,
   } = property;
-  console.log(property);
+
   return (
     <div className="bg-gray-200 py-20">
       <div className="max-w-[1440px] mx-auto bg-gray-200">
@@ -144,7 +207,7 @@ const PropertyDetails = () => {
           </div>
 
           {/* content of property */}
-          <div className="col-span-1  p-5 ">
+          <div className="col-span-1  p-5  bg-white">
             <div onClick={() => navigate("/allProperties")} className="mb-5">
               <Link>
                 <span>
@@ -182,9 +245,120 @@ const PropertyDetails = () => {
             </div>
           </div>
         </div>
+
+        {/* ------------------------------------------------------------------------ */}
         {/* review section here */}
-        <div className="mt-10 border">
-          <h1>Reviews page here</h1>
+        <div className="mt-10  ">
+          <h1 className="text-5xl font-semibold py-5 text-center bg-white shadow-sm my-0">
+            We’d Love Your <span className="text-[#ff385c]">Feedback</span>
+          </h1>
+          <div className=" md:relative bg-white">
+            {/* content  */}
+            <div className="flex flex-col lg:flex-row justify-between  h-150">
+              {/* 1  */}
+              <div className="flex-2 flex justify-baseline items-center relative ">
+                <img
+                  className="object-cover z-0 opacity-5 absolute h-full"
+                  src={DiningImage}
+                  alt=""
+                />
+                <div className=" px-3 z-10 ">
+                  <div className="lg:w-100 flex  items-baseline-last mb-10">
+                    <p className="text-[#ff385c] text-xl font-medium whitespace-nowrap mr-4">
+                      YOUR WORD MATTER
+                    </p>
+                    <div className="grow border-b-2 border-[#ff385c]"></div>
+                  </div>
+
+                  <h1 className="lg:text-5xl font-semibold lg:max-w-170">
+                    Your Voice Shapes{" "}
+                    <span className="text-[#ff385c]">HomeNest</span>
+                  </h1>
+                  <p className=" lg:max-w-145 my-6 text-lg">
+                    We’re constantly improving to make HomeNest better for you.
+                    Tell us about your journey — from browsing properties to
+                    connecting with owners — and help us create the perfect
+                    place to find your next home.
+                  </p>
+
+                  <button
+                    onClick={() => navigate("/myratings")}
+                    className="text-white z-10 bg-[#ff385c] p-2 px-3 mt-5"
+                  >
+                    See details
+                  </button>
+                </div>
+              </div>
+
+              {/* 2 */}
+              <div className="hidden lg:flex flex-1">
+                <img
+                  className="object-cover opacity-20"
+                  src={DiningImage}
+                  alt=""
+                />
+              </div>
+            </div>
+            {/* form  */}
+            <div className="py-30 lg:py-0">
+              <div className="max-w-md mx-auto shadow-xl bg-white  p-5 py-10 lg:absolute md:top-10 md:left-7/12">
+                <form
+                  onSubmit={handleReviewSubmit}
+                  className="bg-white p-2 space-y-2"
+                >
+                  <div>
+                    <label className="block">Reviewer Name</label>
+                    <input
+                      type="text"
+                      name="reviewer_name"
+                      // placeholder="Reviewer Name"
+                      readOnly
+                      defaultValue={property_owner}
+                      className="border border-gray-300 outline-0 w-full p-2"
+                    />
+                  </div>
+                  {/* property name */}
+                  <div>
+                    <label className="block">Property Name</label>
+                    <input
+                      type="text"
+                      name="reviewer_propery_name"
+                      // placeholder="Property Name"
+                      readOnly
+                      defaultValue={property_name}
+                      className="border border-gray-300 outline-0 w-full p-2"
+                    />
+                  </div>
+
+                  {/* Rating  */}
+                  <div>
+                    <Ratings
+                      handleRatingChange={handleRatingChange}
+                      userRating={userRating}
+                    ></Ratings>
+                  </div>
+                  {/* {userRating > 0 && (
+                  <p className="mt-2 text-gray-700">
+                    Your Rating: {userRating}
+                  </p>
+                )} */}
+                  {/* short description */}
+                  <textarea
+                    type="text"
+                    name="review_description"
+                    placeholder="Write your feelings"
+                    className="border border-gray-300 outline-0 w-full h-30 p-2"
+                  ></textarea>
+                  {/* submit btn */}
+                  <input
+                    type="submit"
+                    value="Submit Review"
+                    className="text-white bg-gray-600 p-2 px-3"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
