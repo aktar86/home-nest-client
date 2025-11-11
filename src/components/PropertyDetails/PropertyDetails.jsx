@@ -182,29 +182,13 @@ const PropertyDetails = () => {
             </div>
           </div>
         </div>
+        {/* review section here */}
+        <div className="mt-10 border">
+          <h1>Reviews page here</h1>
+        </div>
       </div>
     </div>
   );
 };
 
 export default PropertyDetails;
-
-// category
-// :
-// "Sale"
-
-// property_name
-// :
-// "Cozy Family Home"
-// property_owner
-// :
-// "Md Aktar Ahmed"
-// property_owner_mail
-// :
-// "amdaktar86@gmail.com"
-// property_price
-// :
-// 6500000
-// _id
-// :
-// "69110c97b9cc4caa83f1a730"
