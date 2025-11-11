@@ -1,5 +1,5 @@
 import React, { use, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
   const updateModalRef = useRef(null);
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
   const { user } = use(AuthContext);
 
   //destructure for card
@@ -18,8 +19,9 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
     property_location,
     property_price,
     property_img_url,
+    createdAt,
   } = property;
-
+  console.log(property);
   //   handle delete btn
   const handleDeleteProperty = (propertyId) => {
     Swal.fire({
@@ -105,7 +107,9 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
 
           //update immidiate ui
           handleUpdatedUI(propertyId, updatedProperty);
-          console.log("clik modal", updatedProperty);
+
+          //navigate the property details page
+          navigate(`/propertydetails/${propertyId}`);
         }
       });
   };
@@ -132,7 +136,9 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
 
       <div className="p-3">
         <span className="flex justify-between items-center gap-2">
-          <p className="flex-2 ">Posted Date: {"10, February, 2025"}</p>
+          <p className="flex-2  py-1 bg-red-200 rounded-2xl pl-5">
+            Posted On: {new Date(createdAt).toLocaleDateString()}
+          </p>
           <p
             className={`flex-1 py-1 rounded-2xl text-center ${
               property.category === "Rent"

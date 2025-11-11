@@ -9,6 +9,7 @@ import React, { use } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import Map from "../../assets/googl_ED-1024x683.jpg";
+import UserIcon from "../../assets/user (1).png";
 
 const PropertyDetails = () => {
   const { user } = use(AuthContext);
@@ -23,6 +24,7 @@ const PropertyDetails = () => {
     category,
     property_owner,
     property_owner_mail,
+    createdAt,
   } = property;
   console.log(property);
   return (
@@ -59,7 +61,7 @@ const PropertyDetails = () => {
               <div className=" shadow-sm rounded-lg mt-5 p-2 flex flex-col md:flex-row md:justify-between md:items-center">
                 <div>
                   <h1 className="font-bold text-3xl">
-                    USD $ {property_price}.00
+                    USD $ {property_price.toLocaleString()}
                   </h1>
                   <p className="text-red-400">
                     {" "}
@@ -104,29 +106,45 @@ const PropertyDetails = () => {
                   Property information
                 </h3>
                 <p>{description}</p>
-                <br />
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Neque, doloremque et blanditiis minus impedit quaerat, odit
-                  sit veritatis debitis eligendi officia aliquam assumenda eaque
-                  esse dicta vero dolorem facilis quisquam rem vel. Nihil,
-                  repellendus. Officiis rem quia, assumenda molestias qui ipsam.
-                  Perferendis necessitatibus temporibus delectus reiciendis,
-                  quasi, non magni voluptas nesciunt saepe quis assumenda dolore
-                  in! Enim unde quam incidunt dolorem ad. Ipsum voluptatibus
-                  <br />
-                  <br />
-                  deleniti assumenda earum nostrum provident ipsa et consectetur
-                  aliquid nobis id ad, rerum fugit aperiam sed. Exercitationem
-                  magnam enim consequatur rem! Debitis, eos animi! Optio qui ab
-                  accusantium porro quo tempora molestias sit sed quaerat est.
-                </p>
               </div>
+            </div>
+            {/* ..... */}
+            <div className=" shadow-sm rounded-lg p-2 mt-5 py-5">
+              <h3 className="font-medium text-xl px-2 text-[#FF385C]">
+                Posted By:
+              </h3>
+              <div className="mt-5 flex flex-col lg:flex-row lg:items-center gap-5 px-2 ">
+                <div>
+                  <img
+                    src={
+                      (property_owner_mail === user.email && user?.photoURL) ||
+                      UserIcon
+                    }
+                    alt={user?.photoURL}
+                    referrerPolicy="no-referrer"
+                    className="w-20 rounded-full ring-3 ring-[#FF385C]"
+                  />
+                </div>
+                <div>
+                  <h2 className="font-bold text-3xl ">{property_owner}</h2>
+                  <p className="text-lg">{property_owner_mail}</p>
+                  <p className="text-xs">
+                    {" "}
+                    Posted On: {new Date(createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
+              {/* <button className="btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full mt-3">
+                <span>
+                  <FontAwesomeIcon icon={faPhoneVolume} />
+                </span>{" "}
+                Call Now
+              </button> */}
             </div>
           </div>
 
           {/* content of property */}
-          <div className="col-span-1  bg-white p-5 ">
+          <div className="col-span-1  p-5 ">
             <div onClick={() => navigate("/allProperties")} className="mb-5">
               <Link>
                 <span>
@@ -135,50 +153,15 @@ const PropertyDetails = () => {
                 Back to Property
               </Link>
             </div>
-            <div className=" shadow-sm rounded-lg p-2">
-              <h3 className="font-medium text-xl px-2 text-[#FF385C]">
-                Agent Detais
-              </h3>
-              <div className="mt-5 flex flex-col lg:flex-row lg:items-center gap-5 px-2 ">
-                <div>
-                  <img
-                    src={user?.photoURL}
-                    alt={user?.photoURL}
-                    referrerPolicy="no-referrer"
-                    className="w-15 rounded-full ring-3 ring-[#FF385C]"
-                  />
-                </div>
-                <div>
-                  <h2 className="font-bold text-2xl ">{property_owner}</h2>
-                  <p className="text-sm">{property_owner_mail}</p>
-                </div>
-              </div>
-              <button className="btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full mt-3">
-                <span>
-                  <FontAwesomeIcon icon={faPhoneVolume} />
-                </span>{" "}
-                Call Now
-              </button>
-            </div>
-
             {/* inspectiong times */}
 
-            <div className=" shadow-sm rounded-lg p-2 mt-10">
+            <div className=" bg-white shadow-sm rounded-lg p-2 mt-10">
               <h3 className="font-medium text-xl px-2 text-[#FF385C]">
                 Inspecting Times
               </h3>
               <div className="mt-5 px-2 ">
                 <p className="font-semibold text-xl">
                   Inspections are actions are still happening
-                </p>
-                <p className="text-lg">
-                  {" "}
-                  {new Date().toLocaleDateString("en-GB", {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
                 </p>
               </div>
               <button className="btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full mt-5">
@@ -190,7 +173,7 @@ const PropertyDetails = () => {
             </div>
 
             {/* img of map  */}
-            <div className="mt-5  shadow-sm rounded-2xl overflow-hidden  ">
+            <div className="mt-5 bg-white shadow-sm rounded-2xl overflow-hidden  ">
               <img
                 className="object-cover w-full shadow-sm p-2  rounded-2xl"
                 src={Map}

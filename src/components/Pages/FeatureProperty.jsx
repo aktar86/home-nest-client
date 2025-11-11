@@ -1,7 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 const FeatureProperty = ({ property }) => {
+  const { user } = use(AuthContext);
   const {
     _id: propertyId,
     property_name,
@@ -11,6 +13,8 @@ const FeatureProperty = ({ property }) => {
     property_price,
     property_img_url,
   } = property;
+
+  const trimDescription = description.slice(0, 50) + "....";
 
   return (
     <div className="flex flex-col bg-white shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
@@ -39,7 +43,7 @@ const FeatureProperty = ({ property }) => {
           </span>
         </div>
 
-        <p className="flex-1 text-sm text-gray-600 mb-3">{description}</p>
+        <p className="flex-1 text-sm text-gray-600 mb-3">{trimDescription}</p>
 
         <div className="flex items-center justify-between text-sm text-gray-700">
           <div>
@@ -49,6 +53,10 @@ const FeatureProperty = ({ property }) => {
             $ {property_price.toLocaleString()}
           </div>
         </div>
+        <p className="mt-2 text-sm border-t">
+          <span className="font-bold">Posted By: </span>
+          {user?.displayName}
+        </p>
         <div className="mt-5">
           <Link
             to={`/propertydetails/${propertyId}`}

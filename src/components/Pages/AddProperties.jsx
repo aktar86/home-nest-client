@@ -44,6 +44,7 @@ const AddProperties = () => {
       property_img_url: propertyPhoto,
       property_owner: userName,
       property_owner_mail: userEmail,
+      createdAt: new Date(),
     };
     console.log(newProperty);
 
