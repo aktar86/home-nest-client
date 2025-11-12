@@ -112,8 +112,8 @@ const Slider = () => {
       <div className="swiper-button-next !right-8 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full w-12 h-12 transition-all duration-300 after:!text-white after:!text-lg"></div>
       <div className="swiper-button-prev !left-8 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full w-12 h-12 transition-all duration-300 after:!text-white after:!text-lg"></div>
 
-      {/* Custom Pagination
-      <div className="swiper-pagination !bottom-8"></div> */}
+      {/* {/* Custom Pagination */}
+      <div className="swiper-pagination !bottom-8"></div>
 
       {/* CSS for animations */}
       <style jsx>{`
