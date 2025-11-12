@@ -7,13 +7,18 @@ const featuredPropertiesPromise = fetch(
 const Home = () => {
   return (
     <div className="bg-gray-200">
-      <div className="max-w-[1440px] mx-auto bg-gray-200 border">
+      <div className="max-w-[1440px] mx-auto bg-gray-200">
+        {/* banner or swiper */}
         <h1>Banner or Slider Section here</h1>
 
         {/* 6 data load */}
-        <FeaturedProperties
-          featuredPropertiesPromise={featuredPropertiesPromise}
-        />
+        <div className="bg-white py-10">
+          <FeaturedProperties
+            featuredPropertiesPromise={featuredPropertiesPromise}
+          />
+        </div>
+
+        {/* section 3 */}
       </div>
     </div>
   );

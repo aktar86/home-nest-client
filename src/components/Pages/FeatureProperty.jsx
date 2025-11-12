@@ -17,12 +17,12 @@ const FeatureProperty = ({ property }) => {
   const trimDescription = description.slice(0, 50) + "....";
 
   return (
-    <div className="flex flex-col bg-white shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
+    <div className="flex flex-col bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
       <img
         referrerPolicy="no-referrer"
         src={property_img_url}
         alt={property_name}
-        className="w-full h-48 object-cover"
+        className="w-full h-64 object-cover"
       />
 
       <div className="p-4 flex flex-col flex-1">

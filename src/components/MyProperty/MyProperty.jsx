@@ -68,6 +68,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
 
     if (!propertyName || !category || !price || !location || !photourl) {
       toast.error("Please fill all required fields correctly.");
+      return;
     }
 
     if (isNaN(price) || price < 0) {
@@ -117,7 +118,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
   return (
     <div
       key={property._id}
-      className="bg-white flex flex-col rounded-lg overflow-hidden "
+      className="bg-white flex flex-col rounded-lg overflow-hidden shadow-xl "
     >
       {/* card img  */}
       <div>
@@ -129,7 +130,9 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
       </div>
       {/* card content  */}
       <div className="p-3 flex-1">
-        <h3 className="font-semibold text-2xl">${property_price}</h3>
+        <h3 className="font-semibold text-2xl text-[#FF385C]">
+          ${property_price.toLocaleString()}
+        </h3>
         <h2 className="font-bold text-3xl">{property_name}</h2>
         <p>Location: {property_location}</p>
       </div>

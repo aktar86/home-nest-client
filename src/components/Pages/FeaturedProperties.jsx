@@ -10,7 +10,7 @@ const FeaturedProperties = ({ featuredPropertiesPromise }) => {
       <h1 className="text-center text-4xl font-bold">Featured Properties </h1>
       <p className="text-center mb-10">Handpicked properties by our team</p>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-2">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-2">
         {featuredProperties.map((property) => (
           <FeatureProperty
             key={property._id}
