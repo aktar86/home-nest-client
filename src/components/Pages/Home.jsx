@@ -1,5 +1,9 @@
 import React from "react";
 import FeaturedProperties from "./FeaturedProperties";
+import WhyChoose from "../WhyChoose/WhyChoose";
+import WhatWeDo from "../WhatWeDo/WhatWeDo";
+import Subscribe from "../Subscribe/Subscribe";
+import Slider from "../Slider/Slider";
 
 const featuredPropertiesPromise = fetch(
   "http://localhost:3000/featured-properties"
@@ -9,7 +13,8 @@ const Home = () => {
     <div className="bg-gray-200">
       <div className="max-w-[1440px] mx-auto bg-gray-200">
         {/* banner or swiper */}
-        <h1>Banner or Slider Section here</h1>
+        {/* Sliders */}
+        <Slider></Slider>
 
         {/* 6 data load */}
         <div className="bg-white py-10">
@@ -18,7 +23,14 @@ const Home = () => {
           />
         </div>
 
-        {/* section 3 */}
+        {/* why choose us */}
+        <WhyChoose></WhyChoose>
+
+        {/* What we do */}
+        <WhatWeDo></WhatWeDo>
+
+        {/* subscribe field */}
+        <Subscribe></Subscribe>
       </div>
     </div>
   );
