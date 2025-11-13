@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const FeatureProperty = ({ property }) => {
-  const { user } = use(AuthContext);
+  const { user, darkMode } = use(AuthContext);
   const {
     _id: propertyId,
     property_name,
@@ -17,7 +17,11 @@ const FeatureProperty = ({ property }) => {
   const trimDescription = description.slice(0, 50) + "....";
 
   return (
-    <div className="flex flex-col bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
+    <div
+      className={`flex flex-col ${
+        darkMode ? "bg-gray-600 text-white" : "bg-gray-100"
+      } shadow-lg rounded-2xl overflow-hidden hover:shadow-lg transition duration-300`}
+    >
       <img
         referrerPolicy="no-referrer"
         src={property_img_url}
@@ -27,7 +31,11 @@ const FeatureProperty = ({ property }) => {
 
       <div className="p-4 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-lg font-semibold text-gray-800">
+          <h3
+            className={`"text-lg font-semibold ${
+              darkMode ? "text-white" : "text-gray-800"
+            }"`}
+          >
             {property_name}
           </h3>
           <span
@@ -43,13 +51,27 @@ const FeatureProperty = ({ property }) => {
           </span>
         </div>
 
-        <p className="flex-1 text-sm text-gray-600 mb-3">{trimDescription}</p>
+        <p
+          className={`"flex-1 text-sm ${
+            darkMode ? "text-white" : "text-gray-600 "
+          } mb-3"`}
+        >
+          {trimDescription}
+        </p>
 
-        <div className="flex items-center justify-between text-sm text-gray-700">
+        <div
+          className={`flex flex-1 items-center justify-between text-sm ${
+            darkMode ? "text-white" : "text-gray-700"
+          }`}
+        >
           <div>
             <p className="font-medium"> {property_location}</p>
           </div>
-          <div className="font-semibold text-indigo-600">
+          <div
+            className={`font-semibold ${
+              darkMode ? "text-white" : "text-indigo-600"
+            }`}
+          >
             $ {property_price.toLocaleString()}
           </div>
         </div>

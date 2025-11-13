@@ -15,7 +15,7 @@ import UserIcon from "../../assets/user (1).png";
 import DiningImage from "../../assets/dining-room-3108037_1280.jpg";
 
 const PropertyDetails = () => {
-  const { user } = use(AuthContext);
+  const { user, darkMode } = use(AuthContext);
   const navigate = useNavigate();
   const property = useLoaderData();
   const [userRating, setUserRating] = useState(0);
@@ -91,11 +91,15 @@ const PropertyDetails = () => {
   } = property;
 
   return (
-    <div className="bg-gray-200 py-20">
-      <div className="max-w-[1440px] mx-auto bg-gray-200">
+    <div className={`${darkMode ? "bg-gray-800" : "bg-gray-200"} py-20 `}>
+      <div className="max-w-[1440px] mx-auto">
         {/* container */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="md:col-span-2  bg-white p-5">
+          <div
+            className={`${
+              darkMode ? "bg-gray-700 text-white" : "bg-white"
+            } md:col-span-2  p-5`}
+          >
             <div>
               {/* img section  */}
               <div className="grid md:grid-cols-3 gap-4 p-2 rounded-lg shadow-sm">
@@ -207,7 +211,11 @@ const PropertyDetails = () => {
           </div>
 
           {/* content of property */}
-          <div className="col-span-1  p-5  bg-white">
+          <div
+            className={`${
+              darkMode ? "bg-gray-700 text-white" : "bg-white"
+            } col-span-1  p-5`}
+          >
             <div onClick={() => navigate("/allProperties")} className="mb-5">
               <Link>
                 <span>
@@ -218,7 +226,11 @@ const PropertyDetails = () => {
             </div>
             {/* inspectiong times */}
 
-            <div className=" bg-white shadow-sm rounded-lg p-2 mt-10">
+            <div
+              className={`${
+                darkMode && "bg-gray-600 text-white"
+              } shadow-sm rounded-lg p-2 mt-10`}
+            >
               <h3 className="font-medium text-xl px-2 text-[#FF385C]">
                 Inspecting Times
               </h3>
@@ -227,7 +239,9 @@ const PropertyDetails = () => {
                   Inspections are actions are still happening
                 </p>
               </div>
-              <button className="btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full mt-5">
+              <button
+                className={`btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full mt-5`}
+              >
                 <span>
                   <FontAwesomeIcon icon={faCalendar} />
                 </span>{" "}
@@ -236,7 +250,11 @@ const PropertyDetails = () => {
             </div>
 
             {/* img of map  */}
-            <div className="mt-5 bg-white shadow-sm rounded-2xl overflow-hidden  ">
+            <div
+              className={`mt-5 ${
+                darkMode ? "bg-gray-600" : "bg-white"
+              } shadow-sm rounded-2xl overflow-hidden `}
+            >
               <img
                 className="object-cover w-full shadow-sm p-2  rounded-2xl"
                 src={Map}
@@ -249,10 +267,18 @@ const PropertyDetails = () => {
         {/* ------------------------------------------------------------------------ */}
         {/* review section here */}
         <div className="mt-10  ">
-          <h1 className="text-5xl font-semibold py-5 text-center bg-white shadow-sm my-0">
+          <h1
+            className={`${
+              darkMode ? "bg-gray-700 text-white" : "bg-white"
+            } text-5xl font-semibold py-5 text-center shadow-sm my-0`}
+          >
             We’d Love Your <span className="text-[#ff385c]">Feedback</span>
           </h1>
-          <div className=" md:relative bg-white">
+          <div
+            className={`${
+              darkMode ? "bg-gray-600 text-white" : "bg-white"
+            } md:relative `}
+          >
             {/* content  */}
             <div className="flex flex-col lg:flex-row justify-between  h-150">
               {/* 1  */}
@@ -301,11 +327,12 @@ const PropertyDetails = () => {
             </div>
             {/* form  */}
             <div className="py-30 lg:py-0">
-              <div className="max-w-md mx-auto shadow-xl bg-white  p-5 py-10 lg:absolute md:top-10 md:left-7/12">
-                <form
-                  onSubmit={handleReviewSubmit}
-                  className="bg-white p-2 space-y-2"
-                >
+              <div
+                className={`max-w-md mx-auto shadow-xl ${
+                  darkMode ? "bg-gray-700" : "bg-white"
+                }  p-5 py-10 lg:absolute md:top-10 md:left-7/12`}
+              >
+                <form onSubmit={handleReviewSubmit} className="p-2 space-y-2">
                   <div>
                     <label className="block">Reviewer Name</label>
                     <input
@@ -353,7 +380,7 @@ const PropertyDetails = () => {
                   <input
                     type="submit"
                     value="Submit Review"
-                    className="text-white bg-gray-600 p-2 px-3"
+                    className="text-white bg-[#FF385C] p-2 px-3"
                   />
                 </form>
               </div>

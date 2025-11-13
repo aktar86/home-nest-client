@@ -9,7 +9,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
   const updateModalRef = useRef(null);
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
-  const { user } = use(AuthContext);
+  const { user, darkMode } = use(AuthContext);
 
   //destructure for card
   const {
@@ -121,7 +121,9 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
   return (
     <div
       key={property._id}
-      className="bg-white flex flex-col rounded-lg overflow-hidden shadow-xl "
+      className={` ${
+        darkMode ? "bg-gray-700" : "bg-white"
+      }  flex flex-col rounded-lg overflow-hidden shadow-xl`}
     >
       {/* card img  */}
       <div>
@@ -163,19 +165,19 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
       <div className="flex justify-between gap-4 p-2">
         <button
           onClick={() => updateModalRef.current.showModal()}
-          className=" flex-1 btn border-2 hover:text-white border-[#FF385C] hover:bg-[#FF385C] rounded-full"
+          className=" flex-1 btn text-white border-0 bg-[#FF385C] hover:bg-[#fd274e] rounded-full"
         >
           Update
         </button>
         <Link
           to={`/propertydetails/${propertyId}`}
-          className=" flex-2 btn border-2 hover:text-white border-[#FF385C] hover:bg-[#FF385C] rounded-full"
+          className=" flex-2 btn  text-white bg-[#FF385C] border-0 hover:bg-[#fd274e] rounded-full"
         >
           View Details
         </Link>
         <button
           onClick={() => handleDeleteProperty(propertyId)}
-          className=" flex-1 btn border-2 hover:text-white border-[#FF385C] hover:bg-[#FF385C] rounded-full"
+          className=" flex-1 btn text-white border-0 bg-[#FF385C] hover:bg-[#fd274e] rounded-full"
         >
           Delete
         </button>
@@ -184,9 +186,13 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <dialog
         ref={updateModalRef}
-        className="modal modal-bottom sm:modal-middle"
+        className="modal modal-bottom sm:modal-middle "
       >
-        <div className="modal-box relative">
+        <div
+          className={`${
+            darkMode ? "bg-gray-700" : "bg-white"
+          } modal-box relative`}
+        >
           <button
             onClick={() => updateModalRef.current.close()}
             className="btn btn-xs bg-[#FF385C] text-xs text-white rounded-full w-8 h-8 absolute right-2 top-2"
@@ -197,10 +203,12 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
             Update Your <span className="text-[#FF385C]">Property</span>
           </h3>
           {/* updateModalRef.current.close() */}
-          <div className="w-full ">
+          <div className={`w-full ${darkMode ? "bg-gray-700" : "bg-white"}`}>
             <form
               onSubmit={handleUpdateProperty}
-              className=" bg-white  shadow-sm rounded-lg p-3 space-y-5"
+              className={`${
+                darkMode ? "bg-gray-700 text-white" : "bg-white"
+              } "   shadow-sm rounded-lg p-3 space-y-5"`}
             >
               {/* 1. Property Name & Category */}
               <div className="flex flex-col md:flex-row justify-between gap-5">

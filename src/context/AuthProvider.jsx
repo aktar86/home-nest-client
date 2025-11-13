@@ -10,12 +10,15 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import useDarkMode from "../Hook/useDarkMode";
 
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -65,6 +68,8 @@ const AuthProvider = ({ children }) => {
     signOutUser,
     signInWithGoogle,
     sendPasswordResetMail,
+    darkMode,
+    toggleDarkMode,
   };
   return (
     <div>

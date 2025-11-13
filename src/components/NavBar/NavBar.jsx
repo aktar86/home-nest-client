@@ -1,11 +1,11 @@
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import React, { use, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import "./NavBar.css";
 import { AuthContext } from "../../context/AuthContext";
 
 const NavBar = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser, darkMode, toggleDarkMode } = use(AuthContext);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -41,7 +41,11 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="border-b-2 border-gray-100 px-2 md:px-0 shadow-lg">
+    <div
+      className={` px-2 border-b-2 border-gray-400 md:px-0 shadow-lg ${
+        darkMode ? " bg-gray-800 text-white" : "bg-white "
+      }`}
+    >
       <div className="max-w-[1440px] mx-auto flex justify-between items-center py-5">
         {/* first part */}
         <div className="flex items-center">
@@ -72,7 +76,15 @@ const NavBar = () => {
             <ul className="flex gap-5 font-semibold">{links}</ul>
           </nav>
         </div>
-
+        {/* dark light  */}
+        <div>
+          <button
+            onClick={toggleDarkMode}
+            className={` ${darkMode ? "bg-gray-800 text-white" : "bg-white"}`}
+          >
+            {darkMode ? <Sun></Sun> : <Moon></Moon>}
+          </button>
+        </div>
         {/* end part  */}
         <div className="px-2">
           {user ? (

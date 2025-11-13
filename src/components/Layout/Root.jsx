@@ -16,12 +16,16 @@ const Root = () => {
         </div>
       ) : (
         <div>
-          <NavBar></NavBar>
-          <Outlet></Outlet>
-          <Footer></Footer>
+          <NavBar />
+          <Outlet />
+          <Footer />
           <ToastContainer />
         </div>
       )}
+      {/* Fixed Button */}
+      {/* <button className="btn btn-xs fixed right-5 bottom-5 bg-white shadow-md border border-gray-300 hover:bg-gray-100 z-[9999] p-5 w-10 h-10">
+        Light
+      </button> */}
     </div>
   );
 };

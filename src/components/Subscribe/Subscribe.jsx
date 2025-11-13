@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import image1 from "../../assets/anna-koval-JZI_1XC1cvM-unsplash.jpg";
 import image2 from "../../assets/alexandr-hovhannisyan-OIVvwDIvmsk-unsplash.jpg";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../context/AuthContext";
 
 const Subscribe = () => {
   const [userMail, setUserMail] = useState([]);
+  const { darkMode } = use(AuthContext);
 
   useEffect(() => {
     fetch("https://home-nest-server-api.vercel.app/users")
@@ -59,7 +61,7 @@ const Subscribe = () => {
   };
 
   return (
-    <div className="bg-white relative">
+    <div className={`${darkMode ? "bg-gray-600" : "bg-white"} relative`}>
       <div className="flex h-[600px]">
         <div className="flex-2 overflow-hidden opacity-10">
           <img className="h-full w-full " src={image1} alt={image1} />
@@ -72,7 +74,11 @@ const Subscribe = () => {
           />
         </div>
       </div>
-      <div className="h-[350px] md:h-[250px] max-w-10/12 md:w-10/12 left-10 md:left-30 bg-red-100 absolute top-50 p-5">
+      <div
+        className={`h-[300px] md:h-[250px] max-w-10/12 md:w-10/12 left-10 md:left-30 bg-red-100 absolute ${
+          darkMode && "text-gray-800"
+        } top-50 p-5`}
+      >
         <h1 className="font-bold text-3xl  text-center mt-5">
           Get the Latest Updates
         </h1>

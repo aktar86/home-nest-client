@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { useLoaderData } from "react-router";
 import FeatureProperty from "./FeatureProperty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../../context/AuthContext";
 
 const AllProperties = () => {
   const properties = useLoaderData();
+  const { darkMode } = use(AuthContext);
   // const navigate = useNavigate();
   const [searchProperty, setSearchProperty] = useState("");
   console.log(properties);
@@ -23,20 +25,26 @@ const AllProperties = () => {
   };
 
   return (
-    <div className="bg-gray-200">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-0 bg-gray-200">
-        <div className="bg-gray-200">
+    <div className={`${darkMode ? "bg-gray-800" : "bg-gray-200"}`}>
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-0 ">
+        <div className={`${darkMode ? "bg-gray-800" : "bg-gray-200"}`}>
           <div>
-            <h1 className="text-4xl font-bold text-center py-10">
+            <h1
+              className={`text-4xl font-bold ${
+                darkMode && "text-white"
+              } text-center py-10`}
+            >
               All <span className="text-[#FF385C]">Properties </span>
             </h1>
-            <p className="text-center mb-10">
+            <p className={`${darkMode && "text-white"} text-center mb-10`}>
               Browse all available properties at HomeNest. From cozy apartments
               to spacious villas, explore detailed listings, prices, <br /> and
               locations to find the perfect home that fits your lifestyle.
             </p>
             <div className="p-2  flex flex-col md:flex-row justify-between ">
-              <h2 className="text-2xl font-semibold">
+              <h2
+                className={`${darkMode && "text-white"} text-2xl font-semibold`}
+              >
                 Total Properties:{" "}
                 <span className="text-[#FF385C]">
                   {filterProperties.length}

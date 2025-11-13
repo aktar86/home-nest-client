@@ -1,13 +1,15 @@
-import React from "react";
+import React, { use } from "react";
 import image1 from "../../assets/digital-marketing-agency-ntwrk-g39p1kDjvSY-unsplash.jpg";
 import image2 from "../../assets/grant-lemons-jTCLppdwSEc-unsplash.jpg";
 import image3 from "../../assets/nastya-dulhiier-hv7EK1NZjAM-unsplash.jpg";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 const WhatWeDo = () => {
   const navigate = useNavigate();
+  const { darkMode } = use(AuthContext);
   return (
-    <div className="bg-white">
+    <div className={`${darkMode ? "bg-gray-600" : "bg-white"}`}>
       {/* part 1 */}
       <div className="flex flex-col md:flex-row justify-center items-center">
         <div className="flex-1">
@@ -39,7 +41,7 @@ const WhatWeDo = () => {
       </div>
 
       {/* part 2  */}
-      <div className="flex flex-col-reverse py-5 md:flex-row justify-center items-center">
+      <div className="flex flex-col-reverse py-5 md:py-0 md:flex-row justify-center items-center">
         {/* img  */}
         <div className="flex-1">
           <img className="w-full object-cover" src={image2} alt={image2} />

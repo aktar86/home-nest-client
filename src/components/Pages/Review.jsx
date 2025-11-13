@@ -1,6 +1,8 @@
-import React from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Review = ({ review }) => {
+  const { darkMode } = use(AuthContext);
   const {
     _id,
     userRatings,
@@ -18,7 +20,11 @@ const Review = ({ review }) => {
   });
 
   return (
-    <div className=" flex flex-col rounded bg-white overflow-hidden shadow-md mb-4">
+    <div
+      className={` flex flex-col rounded ${
+        darkMode ? "bg-gray-700 text-white" : "bg-white"
+      } overflow-hidden shadow-md mb-4`}
+    >
       {/* Image */}
       <div>
         {thumbnail && (
@@ -33,13 +39,25 @@ const Review = ({ review }) => {
       {/* Content */}
       <div className="p-4 flex-1">
         <h3 className="font-semibold text-lg">{reviewerName}</h3>
-        <p className="text-gray-600 text-sm mb-2">{reviewerProperyName}</p>
+        <p
+          className={`${
+            darkMode ? "text-white" : "text-gray-600"
+          }  text-sm mb-2`}
+        >
+          {reviewerProperyName}
+        </p>
 
         {/* Stars */}
         <div className="text-yellow-400 text-xl mb-2">{stars.join(" ")}</div>
 
         {/* Review Description */}
-        <p className="text-gray-700 mb-2">{reviewDescription}</p>
+        <p
+          className={`${
+            darkMode ? "text-white" : "text-gray-600"
+          }  text-sm mb-2`}
+        >
+          {reviewDescription}
+        </p>
       </div>
 
       {/* Date */}

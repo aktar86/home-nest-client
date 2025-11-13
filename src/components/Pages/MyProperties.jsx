@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import MyProperty from "../MyProperty/MyProperty";
 
 const MyProperties = () => {
-  const { user } = use(AuthContext);
+  const { user, darkMode } = use(AuthContext);
   const [properties, setProperties] = useState([]);
 
   //get data for my properties form database
@@ -39,8 +39,8 @@ const MyProperties = () => {
   };
 
   return (
-    <div className="bg-gray-200">
-      <div className="max-w-[1440px] mx-auto bg-gray-200">
+    <div className={`${darkMode ? "bg-gray-800 text-white" : "bg-gray-200"}`}>
+      <div className="max-w-[1440px] mx-auto ">
         <h1 className="text-4xl text-center font-bold py-10">
           My Properties:{" "}
           <span className="text-[#FF385C]">

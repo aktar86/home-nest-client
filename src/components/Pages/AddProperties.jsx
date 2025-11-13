@@ -6,9 +6,10 @@ import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 
 const AddProperties = () => {
-  const { user } = use(AuthContext);
+  const { user, darkMode } = use(AuthContext);
   const [category, setCategory] = useState("");
   console.log(user);
+
   const handleSubmitProperty = (e) => {
     e.preventDefault();
 
@@ -67,7 +68,11 @@ const AddProperties = () => {
       });
   };
   return (
-    <div className=" flex flex-col justify-center items-center bg-gray-200   ">
+    <div
+      className={`${
+        darkMode && "bg-gray-800 text-white"
+      } flex flex-col justify-center items-center bg-gray-200`}
+    >
       {/* top section */}
       <div className="mt-10 mb-5 text-center w-full">
         <Link to="/allProperties">
@@ -86,7 +91,9 @@ const AddProperties = () => {
       <div className="p-4 w-full sm:w-10/12 md:w-8/12 lg:w-5/12 ">
         <form
           onSubmit={handleSubmitProperty}
-          className=" bg-white  shadow-sm rounded-lg p-6 md:p-10 space-y-5"
+          className={`${
+            darkMode ? "bg-gray-700" : "bg-white"
+          } shadow-sm rounded-lg p-6 md:p-10 space-y-5`}
         >
           {/* 1. Property Name & Category */}
           <div className="flex flex-col md:flex-row justify-between gap-5">

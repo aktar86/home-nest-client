@@ -1,9 +1,11 @@
-import React from "react";
+import React, { use } from "react";
 import smartSearchIcon from "../../assets/smart-search.png";
 import Support from "../../assets/24-hours.png";
 import Guidence from "../../assets/leadership.png";
+import { AuthContext } from "../../context/AuthContext";
 
 const WhyChoose = () => {
+  const { darkMode } = use(AuthContext);
   const whyChooseUsCards = [
     {
       id: "smart-search",
@@ -29,12 +31,19 @@ const WhyChoose = () => {
   ];
 
   return (
-    <div className="py-20 bg-red-100">
+    <div className={`py-20 ${darkMode ? "bg-gray-800" : "bg-red-100"}`}>
       <div className="text-center">
         <h1 className="text-center text-4xl font-bold">
-          Why Choose <span className="text-[#FF385C]">Us</span>
+          <span className={`${darkMode ? "text-white" : "text-gray-800"}`}>
+            Why Choose
+          </span>{" "}
+          <span className="text-[#FF385C]">Us</span>
         </h1>
-        <p className="text-center mb-10">
+        <p
+          className={`text-center mb-10 ${
+            darkMode ? "text-white" : "text-gray-800"
+          }`}
+        >
           At HomeNest, we believe finding your perfect property should be
           simple, transparent, and stress-free.
         </p>
@@ -43,7 +52,9 @@ const WhyChoose = () => {
         {whyChooseUsCards.map((choose, index) => (
           <div
             key={index}
-            className="bg-white py-5 rounded-lg shadow-xl  p-3 flex flex-col justify-center items-center space-y-2 "
+            className={`${
+              darkMode ? "bg-gray-600" : "bg-white"
+            } py-5 rounded-lg shadow-xl  p-3 flex flex-col justify-center items-center space-y-2 `}
           >
             <div className=" p-3 bg-red-100 rounded-full transform transition ease-in-out">
               <img
@@ -52,7 +63,7 @@ const WhyChoose = () => {
                 alt={choose.icon}
               />
             </div>
-            <h2 className="font-medium text-3xl ">{choose.title}</h2>
+            <h2 className="font-bold text-2xl text-center ">{choose.title}</h2>
             <p className="text-center">{choose.description}</p>
           </div>
         ))}
