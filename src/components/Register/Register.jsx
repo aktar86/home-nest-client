@@ -70,8 +70,8 @@ const Register = () => {
       >
         <div
           className={`${
-            darkMode ? "bg-gray-800 text-white" : " bg-red-100 "
-          }    p-8 rounded-lg shadow-xl w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg`}
+            darkMode ? "bg-gray-700 text-white" : " bg-white "
+          }     p-8 rounded-lg shadow-xl w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg`}
         >
           <h1
             className={`${
