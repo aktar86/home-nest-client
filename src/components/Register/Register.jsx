@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 
 const Register = () => {
-  const { signInWithGoogle, createUser } = use(AuthContext);
+  const { signInWithGoogle, createUser, darkMode } = use(AuthContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -63,15 +63,31 @@ const Register = () => {
 
   return (
     <div>
-      <div className="bg-red-100 flex justify-center items-center min-h-screen">
-        <div className="bg-white    p-8 rounded-lg shadow-xl w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg">
-          <h1 className="text-xl font-bold text-gray-600 mb-2">
+      <div
+        className={`${
+          darkMode ? "bg-gray-800" : " bg-red-100 "
+        } flex justify-center items-center min-h-screen`}
+      >
+        <div
+          className={`${
+            darkMode ? "bg-gray-800 text-white" : " bg-red-100 "
+          }    p-8 rounded-lg shadow-xl w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg`}
+        >
+          <h1
+            className={`${
+              darkMode ? "text-white" : "text-gray-600"
+            } text-xl font-bold  mb-2`}
+          >
             Welcome to <br />
             <span>
               <h1 className="text-5xl text-[#FF385C]"> HomeNest</h1>
             </span>
           </h1>
-          <p className="text-gray-600 mb-6 font-semibold">
+          <p
+            className={`${
+              darkMode && "text-white"
+            } text-gray-600 mb-6 font-semibold`}
+          >
             Register Your Account
           </p>
 

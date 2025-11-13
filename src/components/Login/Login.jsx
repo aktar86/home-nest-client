@@ -6,7 +6,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { signInWithGoogle, signInUser } = use(AuthContext);
+  const { signInWithGoogle, signInUser, darkMode } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -55,15 +55,29 @@ const Login = () => {
 
   return (
     <div>
-      <div className="flex bg-red-100 justify-center items-center min-h-screen ">
-        <div className="bg-white  shadow-xl p-8 rounded-lg w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg">
-          <h1 className="text-xl font-bold text-gray-600 mb-2">
+      <div
+        className={`${
+          darkMode ? "bg-gray-800" : " bg-red-100 "
+        } flex justify-center items-center min-h-screen`}
+      >
+        <div
+          className={`${
+            darkMode ? "bg-gray-700 text-white" : "bg-white"
+          }   shadow-xl p-8 rounded-lg w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg`}
+        >
+          <h1
+            className={`${
+              darkMode ? "text-white" : "text-gray-600"
+            } text-xl font-bold  mb-2"`}
+          >
             Welcome back to <br />
             <span>
               <h1 className="text-5xl text-[#FF385C]"> HomeNest</h1>
             </span>
           </h1>
-          <p className="text-gray-600 mb-6">Login Your Account</p>
+          <p className={`${darkMode ? "text-white" : " text-gray-600"} mb-6`}>
+            Login Your Account
+          </p>
 
           <form onSubmit={handleEmailPassSignInUser} className="space-y-5">
             {/* email */}
