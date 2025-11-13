@@ -109,7 +109,7 @@ const NavBar = () => {
 
               <ul
                 tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                className="mt-3 z-[99999] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li className="px-4 py-2 text-sm font-semibold">
                   {user.displayName}
