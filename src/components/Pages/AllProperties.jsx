@@ -24,17 +24,25 @@ const AllProperties = () => {
 
   return (
     <div className="bg-gray-200">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-0 bg-gray-200  py-10">
-        <div className="bg-white my-20">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-0 bg-gray-200">
+        <div className="bg-gray-200">
           <div>
-            <h1 className="text-5xl font-bold text-center py-10">
+            <h1 className="text-4xl font-bold text-center py-10">
               All <span className="text-[#FF385C]">Properties </span>
             </h1>
+            <p className="text-center mb-10">
+              Browse all available properties at HomeNest. From cozy apartments
+              to spacious villas, explore detailed listings, prices, <br /> and
+              locations to find the perfect home that fits your lifestyle.
+            </p>
             <div className="p-2  flex flex-col md:flex-row justify-between ">
               <h2 className="text-2xl font-semibold">
-                Total Properties: {filterProperties.length}
+                Total Properties:{" "}
+                <span className="text-[#FF385C]">
+                  {filterProperties.length}
+                </span>
               </h2>
-              <div className="border border-gray-300 px-2 py-1 rounded-sm flex items-center w-sm">
+              <div className="border bg-white border-gray-300 px-2 py-1 rounded-sm flex items-center w-sm">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
                 <input
                   type="text"

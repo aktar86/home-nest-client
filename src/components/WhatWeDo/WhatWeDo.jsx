@@ -2,8 +2,10 @@ import React from "react";
 import image1 from "../../assets/digital-marketing-agency-ntwrk-g39p1kDjvSY-unsplash.jpg";
 import image2 from "../../assets/grant-lemons-jTCLppdwSEc-unsplash.jpg";
 import image3 from "../../assets/nastya-dulhiier-hv7EK1NZjAM-unsplash.jpg";
+import { useNavigate } from "react-router";
 
 const WhatWeDo = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-white">
       {/* part 1 */}
@@ -35,8 +37,9 @@ const WhatWeDo = () => {
           <img className="w-full object-cover " src={image3} alt={image1} />
         </div>
       </div>
+
       {/* part 2  */}
-      <div className="flex flex-col md:flex-row justify-center items-center">
+      <div className="flex flex-col-reverse py-5 md:flex-row justify-center items-center">
         {/* img  */}
         <div className="flex-1">
           <img className="w-full object-cover" src={image2} alt={image2} />
@@ -62,6 +65,12 @@ const WhatWeDo = () => {
               insights, HomeNest ensures that every client finds not just a
               property — but a place they can truly call home.
             </p>
+            <button
+              onClick={() => navigate("/myratings")}
+              className="text-white z-10 mb-3 md:mb-0 bg-[#ff385c] p-2 px-3 mt-5"
+            >
+              See details
+            </button>
           </div>
         </div>
       </div>

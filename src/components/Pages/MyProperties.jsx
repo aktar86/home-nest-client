@@ -9,12 +9,13 @@ const MyProperties = () => {
   //get data for my properties form database
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/properties?email=${user.email}`).then(
-        (res) =>
-          res.json().then((data) => {
-            console.log(data);
-            setProperties(data);
-          })
+      fetch(
+        `https://home-nest-server-api.vercel.app/properties?email=${user.email}`
+      ).then((res) =>
+        res.json().then((data) => {
+          console.log(data);
+          setProperties(data);
+        })
       );
     }
   }, [user?.email]);
@@ -39,8 +40,8 @@ const MyProperties = () => {
 
   return (
     <div className="bg-gray-200">
-      <div className="max-w-[1440px] mx-auto py-10 bg-gray-200">
-        <h1 className="text-5xl text-center font-bold py-10">
+      <div className="max-w-[1440px] mx-auto bg-gray-200">
+        <h1 className="text-4xl text-center font-bold py-10">
           My Properties:{" "}
           <span className="text-[#FF385C]">
             {properties.length < 10
@@ -49,7 +50,7 @@ const MyProperties = () => {
           </span>
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 bg-white p-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5 ">
           {properties.map((property) => (
             <MyProperty
               key={property._id}

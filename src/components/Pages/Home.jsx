@@ -6,7 +6,7 @@ import Subscribe from "../Subscribe/Subscribe";
 import Slider from "../Slider/Slider";
 
 const featuredPropertiesPromise = fetch(
-  "http://localhost:3000/featured-properties"
+  "https://home-nest-server-api.vercel.app/latest-properties"
 ).then((res) => res.json());
 const Home = () => {
   return (

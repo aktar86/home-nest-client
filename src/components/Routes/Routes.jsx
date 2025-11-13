@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Link } from "react-router";
 import Root from "../Layout/Root";
 import Home from "../Pages/Home";
 import AllProperties from "../Pages/AllProperties";
@@ -10,6 +10,7 @@ import AddProperties from "../Pages/AddProperties";
 import MyProperties from "../Pages/MyProperties";
 import PropertyDetails from "../PropertyDetails/PropertyDetails";
 import MyRatings from "../Pages/MyRatings";
+import Error from "../Error/Error";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
       },
       {
         path: "allProperties",
-        loader: () => fetch("http://localhost:3000/properties"),
+        loader: () =>
+          fetch("https://home-nest-server-api.vercel.app/properties"),
         Component: AllProperties,
       },
       {
@@ -56,7 +58,9 @@ const router = createBrowserRouter([
       {
         path: "/propertydetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/properties/${params.id}`),
+          fetch(
+            `https://home-nest-server-api.vercel.app/properties/${params.id}`
+          ),
         element: (
           <PrivetRoute>
             <PropertyDetails></PropertyDetails>
@@ -65,7 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path: "myratings",
-        loader: () => fetch("http://localhost:3000/reviews"),
+        loader: () => fetch("https://home-nest-server-api.vercel.app/reviews"),
         element: (
           <PrivetRoute>
             <MyRatings></MyRatings>
@@ -76,12 +80,9 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: (
-      <div>
-        <p>404 Error, Page not loading</p>
-      </div>
-    ),
+    Component: Error,
   },
 ]);
 
+// https://home-nest-server-api.vercel.app
 export default router;

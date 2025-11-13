@@ -60,7 +60,7 @@ const PropertyDetails = () => {
 
     console.log(newReview);
 
-    fetch("http://localhost:3000/reviews", {
+    fetch("https://home-nest-server-api.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -106,7 +106,7 @@ const PropertyDetails = () => {
                     alt={property_img_url}
                   />
                 </div>
-                <div className=" flex flex-col col-span-1 space-y-2">
+                <div className=" hidden lg:flex flex-col col-span-1 space-y-2">
                   <img
                     className="w-full object-cover flex-1 rounded-lg"
                     src={property_img_url}

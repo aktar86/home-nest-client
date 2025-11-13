@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import React, { use, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import "./NavBar.css";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -8,6 +8,7 @@ const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const handleSignOutUser = () => {
     signOutUser()
@@ -55,7 +56,10 @@ const NavBar = () => {
             </ul>
           </span>
           <span className="ml-2">
-            <h1 className="font-bold text-3xl">
+            <h1
+              onClick={() => navigate("/")}
+              className="font-bold text-3xl cursor-pointer"
+            >
               Home
               <span className="text-[#FF385C]">Nest</span>
             </h1>
@@ -63,7 +67,7 @@ const NavBar = () => {
         </div>
 
         {/* center part  */}
-        <div className="hidden lg:flex">
+        <div className="hidden md:flex">
           <nav>
             <ul className="flex gap-5 font-semibold">{links}</ul>
           </nav>

@@ -49,7 +49,7 @@ const AddProperties = () => {
     console.log(newProperty);
 
     //send data to server to database
-    fetch("http://localhost:3000/properties", {
+    fetch("https://home-nest-server-api.vercel.app/properties", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -69,7 +69,7 @@ const AddProperties = () => {
   return (
     <div className=" flex flex-col justify-center items-center bg-gray-200   ">
       {/* top section */}
-      <div className="mt-10 text-center w-full">
+      <div className="mt-10 mb-5 text-center w-full">
         <Link to="/allProperties">
           <span className="mr-2">
             <FontAwesomeIcon icon={faArrowLeft} />

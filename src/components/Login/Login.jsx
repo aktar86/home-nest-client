@@ -55,8 +55,8 @@ const Login = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center min-h-screen ">
-        <div className="bg-white p-8 rounded-lg w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg">
+      <div className="flex bg-red-100 justify-center items-center min-h-screen ">
+        <div className="bg-white  shadow-xl p-8 rounded-lg w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg">
           <h1 className="text-xl font-bold text-gray-600 mb-2">
             Welcome back to <br />
             <span>

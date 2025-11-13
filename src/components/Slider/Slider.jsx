@@ -116,21 +116,23 @@ const Slider = () => {
       <div className="swiper-pagination !bottom-8"></div>
 
       {/* CSS for animations */}
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-        }
-      `}</style>
+      <style>
+        {`
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.8s ease-out forwards;
+    }
+  `}
+      </style>
     </section>
   );
 };

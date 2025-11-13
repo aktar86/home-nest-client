@@ -34,9 +34,12 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/properties/${propertyId}`, {
-          method: "DELETE",
-        }).then((res) =>
+        fetch(
+          `https://home-nest-server-api.vercel.app/properties/${propertyId}`,
+          {
+            method: "DELETE",
+          }
+        ).then((res) =>
           res.json().then((data) => {
             console.log("after deleting data:", data);
             if (data.deletedCount) {
@@ -88,7 +91,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
     };
 
     //update database
-    fetch(`http://localhost:3000/properties/${propertyId}`, {
+    fetch(`https://home-nest-server-api.vercel.app/properties/${propertyId}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -183,11 +186,17 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
         ref={updateModalRef}
         className="modal modal-bottom sm:modal-middle"
       >
-        <div className="modal-box">
-          <h3 className="font-bold text-center mb-5 text-2xl">
+        <div className="modal-box relative">
+          <button
+            onClick={() => updateModalRef.current.close()}
+            className="btn btn-xs bg-[#FF385C] text-xs text-white rounded-full w-8 h-8 absolute right-2 top-2"
+          >
+            X
+          </button>
+          <h3 className="font-bold text-center mb-5 mt-5 text-2xl">
             Update Your <span className="text-[#FF385C]">Property</span>
           </h3>
-
+          {/* updateModalRef.current.close() */}
           <div className="w-full ">
             <form
               onSubmit={handleUpdateProperty}
