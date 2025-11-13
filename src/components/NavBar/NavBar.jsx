@@ -71,7 +71,7 @@ const NavBar = () => {
         </div>
 
         {/* center part  */}
-        <div className="hidden md:flex">
+        <div className="hidden lg:flex">
           <nav>
             <ul className="flex gap-5 font-semibold">{links}</ul>
           </nav>
