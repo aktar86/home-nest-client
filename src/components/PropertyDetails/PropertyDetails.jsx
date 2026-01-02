@@ -184,7 +184,7 @@ const PropertyDetails = () => {
                 <div>
                   <img
                     src={
-                      (property_owner_mail === user.email && user?.photoURL) ||
+                      (property_owner_mail === user?.email && user?.photoURL) ||
                       UserIcon
                     }
                     alt={user?.photoURL}

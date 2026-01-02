@@ -11,6 +11,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
   const navigate = useNavigate();
   const { user, darkMode } = use(AuthContext);
 
+
   //destructure for card
   const {
     _id: propertyId,

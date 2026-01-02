@@ -129,25 +129,11 @@ const NavBar = () => {
             </div>
           ) : (
             <div className="flex gap-2">
-              <Link
-                to="/register"
-                className={`w-32 px-5 rounded-sm text-center py-2 ${
-                  pathname === "/register"
-                    ? "text-white bg-linear-to-r from-[#FF385C] to-[#FF385C]"
-                    : "text-[#FF385C] border-2 border-[#FF385C]"
-                }`}
-              >
+              <Link to="/register" className="btn-secondary">
                 Register
               </Link>
 
-              <Link
-                to="/login"
-                className={`w-32 px-5 rounded-sm text-center py-2 ml-2 ${
-                  pathname === "/login"
-                    ? "text-white bg-linear-to-r from-[#FF385C] to-[#FF385C]"
-                    : "text-[#FF385C] border-2 border-[#FF385C]"
-                }`}
-              >
+              <Link to="/login" className="btn-secondary">
                 Login
               </Link>
             </div>
@@ -159,3 +145,9 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+// className={`w-32 px-5 rounded-sm text-center py-2 ${
+//   pathname === "/register"
+//     ? "text-white bg-linear-to-r from-[#FF385C] to-[#FF385C]"
+//     : "text-[#FF385C] border-2 border-[#FF385C]"
+// }`}

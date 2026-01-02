@@ -121,7 +121,7 @@ const Login = () => {
             {/* Submit Button */}
             <div>
               <input
-                className="btn btn-primary w-full"
+                className="btn btn-secondary w-full"
                 type="submit"
                 value="Login"
               />

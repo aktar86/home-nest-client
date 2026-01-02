@@ -1,5 +1,4 @@
 import { createBrowserRouter, Link } from "react-router";
-import Root from "../Layout/Root";
 import Home from "../Pages/Home";
 import AllProperties from "../Pages/AllProperties";
 import About from "../Pages/About";
@@ -11,11 +10,13 @@ import MyProperties from "../Pages/MyProperties";
 import PropertyDetails from "../PropertyDetails/PropertyDetails";
 import MyRatings from "../Pages/MyRatings";
 import Error from "../Error/Error";
+import RootLayout from "../Layout/RootLayout";
+import AuthLayout from "../Layout/AuthLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: Root,
+    Component: RootLayout,
     children: [
       {
         index: true,
@@ -31,14 +32,7 @@ const router = createBrowserRouter([
         path: "about",
         Component: About,
       },
-      {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: "register",
-        Component: Register,
-      },
+
       {
         path: "addproperties",
         element: (
@@ -49,11 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "myproperties",
-        element: (
-          <PrivetRoute>
-            <MyProperties></MyProperties>
-          </PrivetRoute>
-        ),
+        element: <MyProperties></MyProperties>,
       },
       {
         path: "/propertydetails/:id",
@@ -61,20 +51,26 @@ const router = createBrowserRouter([
           fetch(
             `https://home-nest-server-api.vercel.app/properties/${params.id}`
           ),
-        element: (
-          <PrivetRoute>
-            <PropertyDetails></PropertyDetails>
-          </PrivetRoute>
-        ),
+        element: <PropertyDetails></PropertyDetails>,
       },
       {
         path: "myratings",
         loader: () => fetch("https://home-nest-server-api.vercel.app/reviews"),
-        element: (
-          <PrivetRoute>
-            <MyRatings></MyRatings>
-          </PrivetRoute>
-        ),
+        element: <MyRatings></MyRatings>,
+      },
+    ],
+  },
+  {
+    path: "/",
+    Component: AuthLayout,
+    children: [
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
       },
     ],
   },

@@ -6,6 +6,14 @@ const MyProperties = () => {
   const { user, darkMode } = use(AuthContext);
   const [properties, setProperties] = useState([]);
 
+  if (!user) {
+    return (
+      <p className="h-100 font-bold text-2xl flex justify-center items-center">
+        User not logged in
+      </p>
+    );
+  }
+
   //get data for my properties form database
   useEffect(() => {
     if (user?.email) {

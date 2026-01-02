@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
 
-const Root = () => {
+const RootLayout = () => {
   const { loading } = use(AuthContext);
   return (
     <div>
@@ -30,4 +30,4 @@ const Root = () => {
   );
 };
 
-export default Root;
+export default RootLayout;

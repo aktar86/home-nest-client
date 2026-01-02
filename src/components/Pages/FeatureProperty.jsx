@@ -79,13 +79,10 @@ const FeatureProperty = ({ property }) => {
           <span className="font-bold">Posted By: </span>
           {user?.displayName}
         </p>
-        <div className="mt-5">
-          <Link
-            to={`/propertydetails/${propertyId}`}
-            className="btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full"
-          >
-            View Details
-          </Link>
+        <div className="mt-5 ">
+          <button className="btn btn-secondary w-full">
+            <Link to={`/propertydetails/${propertyId}`}>View Details</Link>
+          </button>
         </div>
       </div>
     </div>
