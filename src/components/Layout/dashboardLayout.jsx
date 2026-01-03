@@ -22,32 +22,9 @@ const DashboardLayout = () => {
           isExpend ? "w-64" : "w-16  "
         }`}
       >
-        <div>
-          {isExpend ? (
-            <>
-              <div className="flex items-center justify-between  mt-8">
-                <Logo />
-                <button
-                  className="px-4 py-3  cursor-pointer hover:bg-gray-300"
-                  onClick={() => setIsExpend(!isExpend)}
-                >
-                  {isExpend ? <PanelLeftClose /> : ""}
-                </button>{" "}
-              </div>
-            </>
-          ) : (
-            <button
-              className="px-4 py-3  mt-8 w-full cursor-pointer hover:bg-gray-300"
-              onClick={() => setIsExpend(!isExpend)}
-            >
-              {isExpend ? "" : <PanelLeftOpen />}
-            </button>
-          )}
-        </div>
-
         {/* Links */}
 
-        <ul className="mt-20 flex flex-col ">
+        <ul className=" mt-20 flex flex-col">
           {/* Home Link */}
           <NavLink
             to="/"
@@ -114,7 +91,36 @@ const DashboardLayout = () => {
       </aside>
 
       {/* content showing part */}
-      <div className=" bg-white">
+      <div className=" bg-white w-full">
+        <nav className=" py-4 bg-gray-100 w-full">
+          <div>
+            {isExpend ? (
+              <>
+                <div className="flex items-center">
+                  <button
+                    className="px-4 py-3 mr-2 cursor-pointer hover:bg-gray-300"
+                    onClick={() => setIsExpend(!isExpend)}
+                  >
+                    {isExpend ? <PanelLeftClose /> : <PanelLeftOpen />}
+                  </button>
+                  <Logo />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center">
+                  <button
+                    className="px-4 py-3 mr-2 cursor-pointer hover:bg-gray-300"
+                    onClick={() => setIsExpend(!isExpend)}
+                  >
+                    {isExpend ? <PanelLeftClose /> : <PanelLeftOpen />}
+                  </button>
+                  <Logo />
+                </div>
+              </>
+            )}
+          </div>
+        </nav>
         <Outlet></Outlet>
       </div>
     </div>
