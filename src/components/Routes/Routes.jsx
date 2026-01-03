@@ -12,6 +12,7 @@ import MyRatings from "../Pages/MyRatings";
 import Error from "../Error/Error";
 import RootLayout from "../Layout/RootLayout";
 import AuthLayout from "../Layout/AuthLayout";
+import DashboardLayout from "../Layout/dashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,14 @@ const router = createBrowserRouter([
         Component: Register,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivetRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivetRoute>
+    ),
   },
   {
     path: "*",

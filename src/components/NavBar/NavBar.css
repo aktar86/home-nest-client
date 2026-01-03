@@ -1,3 +1,21 @@
+@import "tailwindcss";
 nav a.active {
   color: #ff385c;
 }
+
+.li-effect {
+  /* Mobile (Default): সবার জন্য দৃশ্যমান */
+  @apply px-5 py-2 hover:bg-[#ff385c] w-full hover:text-white;
+
+  /* Tablet/Medium Screen (md): আপনার আগের সেটিংস */
+  @apply md:px-0 md:py-0 md:hover:bg-[#ff385c] md:w-full;
+
+  /* Large Screen (lg): এই স্ক্রিন সাইজ থেকে হাইড হয়ে যাবে */
+  @apply lg:hidden;
+}
+
+/* nav ul li:hover {
+  padding: 10px 0px;
+  background-color: #ff385c;
+  color: white;
+} */

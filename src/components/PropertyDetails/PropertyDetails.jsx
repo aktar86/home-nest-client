@@ -139,7 +139,7 @@ const PropertyDetails = () => {
                   </p>
                 </div>
                 <div>
-                  <button className="btn bg-[#FF385C] outline-0 border-0 text-white font-medium flex items-center w-full rounded-full md:w-auto mt-3 md:mt-0 justify-center ">
+                  <button className="btn-secondary btn w-full">
                     <span>
                       <FontAwesomeIcon icon={faPhoneVolume} />
                     </span>
@@ -239,9 +239,7 @@ const PropertyDetails = () => {
                   Inspections are actions are still happening
                 </p>
               </div>
-              <button
-                className={`btn bg-[#FF385C] outline-0 border-0 text-white w-full rounded-full mt-5`}
-              >
+              <button className={`btn btn-secondary w-full mt-8`}>
                 <span>
                   <FontAwesomeIcon icon={faCalendar} />
                 </span>{" "}
@@ -309,7 +307,7 @@ const PropertyDetails = () => {
 
                   <button
                     onClick={() => navigate("/myratings")}
-                    className="text-white z-10 bg-[#ff385c] p-2 px-3 mt-5"
+                    className="btn btn-secondary"
                   >
                     See details
                   </button>
@@ -380,7 +378,7 @@ const PropertyDetails = () => {
                   <input
                     type="submit"
                     value="Submit Review"
-                    className="text-white bg-[#FF385C] p-2 px-3"
+                    className="btn btn-secondary"
                   />
                 </form>
               </div>

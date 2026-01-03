@@ -7,6 +7,10 @@
   themes: light --default;
 }
 
+@theme {
+  /* পুরা ব্যাকগ্রাউন্ডে ব্যবহারের জন্য ভেরিয়েবল */
+  --background-image-main-gradient: linear-gradient(to right, #ff385c, #ff8a5c);
+}
 /* body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;

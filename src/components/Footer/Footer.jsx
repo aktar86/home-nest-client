@@ -10,7 +10,7 @@ import Youtube from "../../assets/youtube.png";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <div className="bg-[#ff143f]">
+    <div className="bg-main-gradient">
       <div className="max-w-[1440px] mx-auto pt-30 pb-10">
         {/* Footer section  */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 px-5 md:px-0 ">
@@ -73,15 +73,27 @@ const Footer = () => {
             <h3 className="font-bold text-xl mb-3">Contact & support</h3>
             <div className="space-y-2">
               <div className="flex justify-baseline items-center">
-                <img className="w-10" src={MailIcon} alt={MailIcon} />
+                <img
+                  className="w-8 mr-2 ring ring-white rounded-full"
+                  src={MailIcon}
+                  alt={MailIcon}
+                />
                 <p>homenest.info@gmail.com</p>
               </div>
               <div className="flex justify-baseline items-center">
-                <img className="w-8 mr-2" src={CallIcon} alt={CallIcon} />
+                <img
+                  className="w-8 mr-2 ring ring-white rounded-full"
+                  src={CallIcon}
+                  alt={CallIcon}
+                />
                 <p>01728456744</p>
               </div>
               <div className="flex justify-baseline items-center">
-                <img className="w-10" src={Location} alt={Location} />
+                <img
+                  className="w-8 mr-2 ring ring-white rounded-full"
+                  src={Location}
+                  alt={Location}
+                />
                 <p>Tilagor,Sylhet-3100</p>
               </div>
             </div>
@@ -133,7 +145,4 @@ const Footer = () => {
   );
 };
 
-Twitter;
-Facebook;
-Youtube;
 export default Footer;

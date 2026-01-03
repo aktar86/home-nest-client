@@ -11,7 +11,6 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
   const navigate = useNavigate();
   const { user, darkMode } = use(AuthContext);
 
-
   //destructure for card
   const {
     _id: propertyId,
@@ -145,7 +144,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
 
       <div className="p-3">
         <span className="flex justify-between items-center gap-2">
-          <p className="flex-2  py-1 bg-red-200 rounded-2xl pl-5">
+          <p className="flex-2  py-1 rounded-2xl ">
             Posted On: {new Date(createdAt).toLocaleDateString()}
           </p>
           <p
@@ -166,19 +165,19 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
       <div className="flex justify-between gap-4 p-2">
         <button
           onClick={() => updateModalRef.current.showModal()}
-          className=" flex-1 btn text-white border-0 bg-[#FF385C] hover:bg-[#fd274e] rounded-full"
+          className=" flex-1 btn btn-secondary"
         >
           Update
         </button>
         <Link
           to={`/propertydetails/${propertyId}`}
-          className=" flex-2 btn  text-white bg-[#FF385C] border-0 hover:bg-[#fd274e] rounded-full"
+          className=" flex-2 btn  btn-secondary"
         >
           View Details
         </Link>
         <button
           onClick={() => handleDeleteProperty(propertyId)}
-          className=" flex-1 btn text-white border-0 bg-[#FF385C] hover:bg-[#fd274e] rounded-full"
+          className=" flex-1 btn btn-secondary"
         >
           Delete
         </button>
@@ -196,7 +195,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
         >
           <button
             onClick={() => updateModalRef.current.close()}
-            className="btn btn-xs bg-[#FF385C] text-xs text-white rounded-full w-8 h-8 absolute right-2 top-2"
+            className="btn btn-xs btn-secondary w-8 h-8 absolute right-2 top-2"
           >
             X
           </button>
@@ -209,10 +208,10 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
               onSubmit={handleUpdateProperty}
               className={`${
                 darkMode ? "bg-gray-700 text-white" : "bg-white"
-              } "   shadow-sm rounded-lg p-3 space-y-5"`}
+              } " p-3 space-y-5"`}
             >
               {/* 1. Property Name & Category */}
-              <div className="flex flex-col md:flex-row justify-between gap-5">
+              <div className="flex flex-col md:flex-row justify-between gap-5 space-y-5">
                 <div className="flex-1">
                   <label className="block font-semibold mb-1">
                     Property Name
@@ -245,7 +244,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
               </div>
 
               {/* 2. Price & Location */}
-              <div className="flex flex-col md:flex-row justify-between gap-5">
+              <div className="flex flex-col md:flex-row justify-between gap-5 space-y-5">
                 <div className="flex-1">
                   <label className="block font-semibold mb-1">Price</label>
                   <input
@@ -267,7 +266,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
               </div>
 
               {/* 3. Property Image URL */}
-              <div>
+              <div className="space-y-5 mb-5">
                 <label className="block font-semibold mb-1">
                   Your Property Image URL
                 </label>
@@ -280,7 +279,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
               </div>
 
               {/* 4. User Info */}
-              <div className="flex flex-col md:flex-row justify-between gap-5">
+              <div className="flex flex-col md:flex-row justify-between gap-5 space-y-5">
                 <div className="flex-1">
                   <label className="block font-semibold mb-1">User Name</label>
                   <input
@@ -317,10 +316,7 @@ const MyProperty = ({ property, deleteProperty, handleUpdatedUI }) => {
               </div>
 
               {/* 6. Submit Button */}
-              <button
-                type="submit"
-                className="btn bg-[#ff385c] hover:bg-[#e23352] text-white font-semibold w-full py-2 rounded-full transition-all"
-              >
+              <button type="submit" className="btn btn-secondary w-full mt-5">
                 Update Property
               </button>
             </form>
