@@ -13,6 +13,8 @@ import Error from "../Error/Error";
 import RootLayout from "../Layout/RootLayout";
 import AuthLayout from "../Layout/AuthLayout";
 import DashboardLayout from "../Layout/dashboardLayout";
+import Leaderboard from "../dashboard/Leaderboard";
+import MyProfile from "../dashboard/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +84,16 @@ const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivetRoute>
     ),
+    children: [
+      {
+        path: "leaderboard",
+        Component: Leaderboard,
+      },
+      {
+        path: "my-profile",
+        Component: MyProfile,
+      },
+    ],
   },
   {
     path: "*",

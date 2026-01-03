@@ -9,7 +9,7 @@ import {
   User,
 } from "lucide-react";
 import React, { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import Logo from "../Logo/Logo";
 
 const DashboardLayout = () => {
@@ -71,7 +71,7 @@ const DashboardLayout = () => {
 
           {/* Leaderboard Link */}
           <NavLink
-            to="/leaderboard"
+            to="/dashboard/leaderboard"
             className={({ isActive }) =>
               `group flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out  ${
                 isActive
@@ -92,7 +92,7 @@ const DashboardLayout = () => {
 
           {/* My Profile Link */}
           <NavLink
-            to="/profile"
+            to="/dashboard/my-profile"
             className={({ isActive }) =>
               `group flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out  ${
                 isActive
@@ -114,7 +114,9 @@ const DashboardLayout = () => {
       </aside>
 
       {/* content showing part */}
-      <div className=" bg-white"></div>
+      <div className=" bg-white">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 };
