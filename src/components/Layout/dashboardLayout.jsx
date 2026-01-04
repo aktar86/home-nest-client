@@ -48,7 +48,7 @@ const DashboardLayout = () => {
 
           {/* Leaderboard Link */}
           <NavLink
-            to="/dashboard/leaderboard"
+            to="/dashboard/overview"
             className={({ isActive }) =>
               `group flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out  ${
                 isActive
@@ -60,7 +60,7 @@ const DashboardLayout = () => {
             {isExpend ? (
               <>
                 <ChartColumn size={20} />
-                <span className="font-medium">Leaderboard</span>
+                <span className="font-medium">Overview</span>
               </>
             ) : (
               <ChartColumn />

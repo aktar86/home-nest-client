@@ -4,12 +4,12 @@ import { Link, NavLink } from "react-router";
 import "./NavBar.css";
 import { AuthContext } from "../../context/AuthContext";
 import Logo from "../Logo/Logo";
+import useRole from "../../Hook/useRole";
 
 const NavBar = () => {
   const { user, signOutUser, darkMode, toggleDarkMode } = use(AuthContext);
   const [open, setOpen] = useState(false);
-  // const { pathname } = useLocation();
-  // const navigate = useNavigate();
+  const { role } = useRole();
 
   const handleSignOutUser = () => {
     signOutUser()
@@ -22,15 +22,15 @@ const NavBar = () => {
   const links = (
     <>
       <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
-        <NavLink to="/dashboard">dasboad</NavLink>
-      </li>
-      <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
         <NavLink to="/">Home</NavLink>
       </li>
       <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
         <NavLink to="/allProperties">All Properties</NavLink>
       </li>
-      {user && (
+      <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
+        <NavLink to="/about">About</NavLink>
+      </li>
+      {role === "user" && (
         <>
           <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
             <NavLink to="/addproperties">Add Properties</NavLink>
@@ -38,11 +38,11 @@ const NavBar = () => {
           <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
             <NavLink to="/myproperties">My Properties</NavLink>
           </li>
+          <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
+            <NavLink to="/myratings">My Ratings</NavLink>
+          </li>
         </>
       )}
-      <li className="px-10 py-2 hover:bg-[#ff385c] hover:text-white transition-colors duration-200 lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-inherit">
-        <NavLink to="/myratings">My Ratings</NavLink>
-      </li>
     </>
   );
   return (
@@ -114,6 +114,9 @@ const NavBar = () => {
                   </li>
                   <li className="px-4 py-2 text-xs text-gray-500">
                     {user.email}
+                  </li>
+                  <li className="px-4 py-2  text-gray-500">
+                    <Link to="/dashboard/overview">Dashboard</Link>
                   </li>
                   <li className=" mt-2 pt-2">
                     <button

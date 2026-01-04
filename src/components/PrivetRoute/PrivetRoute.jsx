@@ -1,6 +1,7 @@
 import React, { Children, use } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Navigate, useLocation } from "react-router";
+import Loader from "../Loader/Loader";
 
 const PrivetRoute = ({ children }) => {
   const { user, loading } = use(AuthContext);
@@ -8,11 +9,7 @@ const PrivetRoute = ({ children }) => {
   console.log(location);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-ball loading-xl"></span>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (user) {

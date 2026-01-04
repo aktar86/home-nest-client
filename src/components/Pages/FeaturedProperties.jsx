@@ -16,7 +16,7 @@ const FeaturedProperties = ({ featuredPropertiesPromise }) => {
         space that truly feels like home with HomeNest.
       </p>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-2">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-2">
         {featuredProperties.map((property) => (
           <FeatureProperty
             key={property._id}

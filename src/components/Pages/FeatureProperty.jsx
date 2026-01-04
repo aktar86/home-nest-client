@@ -32,7 +32,7 @@ const FeatureProperty = ({ property }) => {
       <div className="p-4 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-2">
           <h3
-            className={`"text-lg font-semibold ${
+            className={`"text-lg font-semibold line-clamp-1 ${
               darkMode ? "text-white" : "text-gray-800"
             }"`}
           >

@@ -4,6 +4,7 @@ import Google from "../../assets/google.png";
 import { AuthContext } from "../../context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
+import LoginCredentials from "../LoginCredentials/LoginCredentials";
 
 const Login = () => {
   const { signInWithGoogle, signInUser, darkMode } = use(AuthContext);
@@ -42,15 +43,27 @@ const Login = () => {
   };
 
   //handle google signin
-  const handleUserSignInWithGoogle = () => {
-    signInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
-        navigate(location.state || "/");
-      })
-      .catch((error) => {
-        console.log(error.message);
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithGoogle();
+
+      const userInfo = {
+        name: result.user.displayName,
+        email: result.user.email,
+        photoURL: result.user.photoURL,
+      };
+
+      await fetch("https://home-nest-server-api.vercel.app/users", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(userInfo),
       });
+
+      toast.success("Login successful!");
+      navigate(location.state || "/");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -78,6 +91,9 @@ const Login = () => {
           <p className={`${darkMode ? "text-white" : " text-gray-600"} mb-6`}>
             Login Your Account
           </p>
+          {/* login crediential */}
+
+          <LoginCredentials />
 
           <form onSubmit={handleEmailPassSignInUser} className="space-y-5">
             {/* email */}
@@ -136,7 +152,7 @@ const Login = () => {
           </form>
           {/* Social */}
           <div
-            onClick={handleUserSignInWithGoogle}
+            onClick={handleGoogleSignIn}
             className="w-full flex items-center gap-5 btn btn-outline"
           >
             <img className="w-5" src={Google} alt="" />

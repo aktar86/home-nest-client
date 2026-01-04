@@ -13,8 +13,9 @@ import Error from "../Error/Error";
 import RootLayout from "../Layout/RootLayout";
 import AuthLayout from "../Layout/AuthLayout";
 import DashboardLayout from "../Layout/dashboardLayout";
-import Leaderboard from "../dashboard/Leaderboard";
+import Leaderboard from "../dashboard/Overview";
 import MyProfile from "../dashboard/MyProfile";
+import Overview from "../dashboard/Overview";
 
 const router = createBrowserRouter([
   {
@@ -86,8 +87,8 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "leaderboard",
-        Component: Leaderboard,
+        path: "overview",
+        Component: Overview,
       },
       {
         path: "my-profile",

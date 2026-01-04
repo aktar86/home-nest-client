@@ -5,15 +5,14 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
+import Loader from "../Loader/Loader";
 
 const RootLayout = () => {
   const { loading } = use(AuthContext);
   return (
     <div>
       {loading ? (
-        <div className="flex justify-center items-center min-h-screen">
-          <span className="loading loading-ball loading-xl"></span>
-        </div>
+        <Loader />
       ) : (
         <div>
           <NavBar />

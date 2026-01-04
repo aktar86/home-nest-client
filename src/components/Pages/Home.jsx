@@ -6,6 +6,10 @@ import Subscribe from "../Subscribe/Subscribe";
 import Slider from "../Slider/Slider";
 
 import { AuthContext } from "../../context/AuthContext";
+import FAQ from "../FAQ/FAQ";
+import Testimonials from "../Testimonial/Testimonial";
+import Services from "../Services/Services";
+import Statistics from "../Statistics/Statistics";
 
 const featuredPropertiesPromise = fetch(
   "https://home-nest-server-api.vercel.app/latest-properties"
@@ -31,11 +35,22 @@ const Home = () => {
           />
         </div>
 
+        {/* Services */}
+        <Services />
+
         {/* why choose us */}
         <WhyChoose></WhyChoose>
 
         {/* What we do */}
         <WhatWeDo></WhatWeDo>
+
+        {/* HighlightSection */}
+        <Statistics />
+        {/* Testimonials */}
+        <Testimonials />
+
+        {/* faq */}
+        <FAQ />
 
         {/* subscribe field */}
         <Subscribe></Subscribe>
