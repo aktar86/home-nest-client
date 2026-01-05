@@ -2,7 +2,7 @@
 
 # 🏡 HomeNest — Real Estate Property Marketplace
 
-**Live Site URL:** [https://cheerful-haupia-bfbd19.netlify.app/](https://cheerful-haupia-bfbd19.netlify.app/)
+**Live Site URL:** [https://cheerful-haupia-bfbd19.netlify.app/](https://home-nest-f7a26.web.app/)
 
 HomeNest is a modern real estate web application where users can explore, rent, and purchase premium properties across Dhaka. The platform features a responsive design, user authentication, dark mode support, and seamless property management options.
 
